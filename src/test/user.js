@@ -44,6 +44,8 @@ describe('User API endpoints', () => {
     User.deleteMany({ username: ['myuser', 'anotheruser'] })
       .then(() => {
         done()
+      }).catch((err) => {
+        done(err)
       })
   })
 
@@ -84,6 +86,8 @@ describe('User API endpoints', () => {
         User.findOne({ username: 'anotheruser' }).then(user => {
           expect(user).to.be.an('object')
           done()
+        }).catch((err) => {
+          done(err)
         })
       })
   })
@@ -101,6 +105,8 @@ describe('User API endpoints', () => {
         User.findOne({ username: 'anotheruser' }).then(user => {
           expect(user).to.be.an('object')
           done()
+        }).catch((err) => {
+          done(err)
         })
       })
   })
@@ -117,6 +123,8 @@ describe('User API endpoints', () => {
         User.findOne({ username: 'myuser' }).then(user => {
           expect(user).to.equal(null)
           done()
+        }).catch((err) => {
+          done(err)
         })
       })
   })

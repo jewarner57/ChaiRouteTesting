@@ -50,16 +50,18 @@ describe('Message API endpoints', () => {
   })
 
   afterEach((done) => {
-
     Message.deleteMany({ title: ['my title', 'new msg title', 'another title'] })
-
       .then(() => {
 
         User.deleteMany({ username: ['myuser'] })
           .then(() => {
             done()
+          }).catch((err) => {
+            done(err)
           })
 
+      }).catch((err) => {
+        done(err)
       })
   })
 
@@ -102,6 +104,8 @@ describe('Message API endpoints', () => {
         Message.findOne({ title: 'new msg title' }).then(message => {
           expect(message).to.be.an('object')
           done()
+        }).catch((err) => {
+          done(err)
         })
       })
   })
@@ -119,6 +123,8 @@ describe('Message API endpoints', () => {
         Message.findOne({ title: 'another title' }).then(message => {
           expect(message).to.be.an('object')
           done()
+        }).catch((err) => {
+          done(err)
         })
       })
   })
@@ -135,6 +141,8 @@ describe('Message API endpoints', () => {
         Message.findOne({ title: 'my title' }).then(message => {
           expect(message).to.equal(null)
           done()
+        }).catch((err) => {
+          done(err)
         })
       })
   })
